@@ -1,0 +1,10 @@
+# compiled files
+proj_tst1/exe
+proj_tst2/exe
+proj_tst3/exe
+proj_tst4_motion/exe
+
+proj_tst1/obj
+proj_tst2/obj
+proj_tst3/obj
+proj_tst4_motion/obj
