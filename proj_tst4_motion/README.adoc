@@ -5,4 +5,5 @@
 |C++ compiler            |clang or gcc (g\++)
 |OpenGL integration      |GLFW
 |OpenGL extension manager|GLEW
+|3D maths lib            |glm
 |============================================
