@@ -36,12 +36,13 @@ auto logs::timestamp() -> std::string
     struct timespec ts; // NOLINT
     timespec_get(&ts, TIME_UTC);
     // uninitialized for a bit of speed
-    // TODO no sense in allocating this every time, could just keep it
+    /* TODO no sense in allocating this every time, could just keep it (mind
+     * multithreading though) */
     std::array<char, 32> buf; // NOLINT
     size_t rc = strftime(&buf[0], buf.size(),
-            "[%Y-%m-%d %T", localtime(&ts.tv_sec));
+            "%Y-%m-%d %T", localtime(&ts.tv_sec));
     // NOLINTNEXTLINE
-    snprintf(&buf[rc], sizeof buf - rc, ".%09ld]", ts.tv_nsec);
+    snprintf(&buf[rc], sizeof buf - rc, ".%05ld", ts.tv_nsec);
 
     return std::string(&buf[0]);
 }

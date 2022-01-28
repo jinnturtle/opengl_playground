@@ -47,7 +47,7 @@ auto load_shaders(
     int info_log_length;
 
     // compile Vertex Shader
-    DBG(1, "compiling vertex shader: ", vertex_file_path);
+    logs::info("compiling vertex shader: ", vertex_file_path);
     char const* vertex_shader_code_p {vertex_shader_code.c_str()};
     glShaderSource(vertex_shader_ID, 1, &vertex_shader_code_p, NULL);
     glCompileShader(vertex_shader_ID);
@@ -66,7 +66,7 @@ auto load_shaders(
     }
 
     // compile Fragment Shader
-    DBG(1, "compiling fragment shader: ", fragment_file_path);
+    logs::info("compiling fragment shader: ", fragment_file_path);
     char const* fragment_shader_code_p {fragment_shader_code.c_str()};
     glShaderSource(fragment_shader_ID, 1, &fragment_shader_code_p , nullptr);
     glCompileShader(fragment_shader_ID);
