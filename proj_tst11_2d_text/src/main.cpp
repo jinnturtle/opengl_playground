@@ -194,8 +194,9 @@ auto main(int argc, char** argv) -> int
     if (glGetError() != GL_NO_ERROR) {
         logs::err("error while getting uniform '", mvp_name, "' location");
     }
-    
-    initText2D("data/textures/holstein.dds");
+
+    //    initText2D("data/textures/holstein.dds");
+    initText2D("data/textures/mononoki.dds");
 
     Size2 window_size;
     glfwGetWindowSize(window, &window_size.w, &window_size.h);
@@ -220,14 +221,14 @@ auto main(int argc, char** argv) -> int
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
             break;
         }
-       
+
         if (glfwGetKey(window, GLFW_KEY_F) == GLFW_PRESS) {
             if (fps_cap_toggle == false) {
                 fps_cap_toggle = true;
                 fps_man.toggle_frame_cap();
             }
         }
-        
+
         if (glfwGetKey(window, GLFW_KEY_F) == GLFW_RELEASE) {
                 fps_cap_toggle = false;
         }
@@ -301,7 +302,7 @@ auto main(int argc, char** argv) -> int
         glEnableVertexAttribArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, vert_buf_id);
         glVertexAttribPointer(
-            0,                  /* attribute 0. No particular reason for 0, but 
+            0,                  /* attribute 0. No particular reason for 0, but
                                  * must match the layout in the shader. */
             3,                  // size
             GL_FLOAT,           // type
@@ -332,12 +333,12 @@ auto main(int argc, char** argv) -> int
         glDisableVertexAttribArray(1);
 
         sprintf(text_buf, "%.2f sec", glfwGetTime());
-        printText2D(text_buf, 10, 540, 20);
+        printText2D(text_buf, 10, 540, 8, 16);
         sprintf(text_buf, "%u fps", fps_man.get_fps());
-        printText2D(text_buf, 10, 570, 20);
+        printText2D(text_buf, 10, 570, 8, 16);
         sprintf(text_buf, "%.4fs frametime", fps_man.get_delta_seconds());
-        printText2D(text_buf, 10, 510, 20);
-        
+        printText2D(text_buf, 10, 510, 8, 16);
+
         glfwSwapBuffers(window);
 
         fps_man.end_frame();
@@ -377,7 +378,7 @@ auto init() -> GLFWwindow*
     Size2 win_res {.w = 1366, .h = 768};
 
     GLFWwindow* window {
-        glfwCreateWindow(win_res.w, win_res.h, "OpenGL Test 11 - 2d text", 
+        glfwCreateWindow(win_res.w, win_res.h, "OpenGL Test 11 - 2d text",
         NULL, NULL)};
     if (window == nullptr) {
         logs::err(
@@ -405,4 +406,3 @@ auto deinit(GLFWwindow* window) -> void
     glfwDestroyWindow(window);
     glfwTerminate();
 }
-
